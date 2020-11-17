@@ -7,9 +7,12 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {
   Checkbox,
+  FormControl,
   FormControlLabel,
+  Input,
   ListSubheader,
   Paper,
+  TextField,
   Toolbar,
 } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
@@ -18,25 +21,31 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
+
       // maxWidth: 752,
     },
-    tasks: {
-      backgroundColor: theme.palette.background.paper,
-    },
+    tasks: {},
     title: {
-      // margin: theme.spacing(0, 0, 0),
+      margin: theme.spacing(0),
     },
     paper: {
-      padding: theme.spacing(1),
-      margin: theme.spacing(2),
+      // padding: theme.spacing(1),
+      margin: theme.spacing(1),
       textAlign: 'center',
       color: theme.palette.text.secondary,
-      minHeight: '41vh',
-      // margin: '10px 20px',
+      backgroundColor: theme.palette.background.paper,
+      width: '100%',
+      overflowY: 'auto',
+      minHeight: theme.spacing(2) * 20,
+      maxHeight: theme.spacing(2) * 20,
     },
-    // title: {
-    //   margin: theme.spacing(1),
-    // },
+
+    newTask: {
+      '& > *': {
+        margin: theme.spacing(2),
+        width: '40ch',
+      },
+    },
   }),
 );
 
@@ -60,48 +69,38 @@ interface TaskListProps {
 export default function TaskList({ title, ico }: TaskListProps) {
   const classes = useStyles();
   const [dense] = React.useState(true);
-  const [secondary] = React.useState(true);
-  // const icn = (): JSX.Element => {
-  //   return <Icon>Add</Icon>;
-  // };
+  // const [secondary] = React.useState(true);
 
   return (
     <div className={classes.root}>
-      <Paper className={classes.paper} variant="outlined">
-        {/* <Grid container spacing={1}> */}
-        <Grid item xs={12} md={6}>
-          {/* <div className={classes.tasks}> */}
-          <List dense={dense}>
-            <Toolbar>
-              {ico}
-              <ListSubheader
-              // className={classes.title}
-              >
-                {title}
-              </ListSubheader>
-            </Toolbar>
-            {generate(
-              <ListItem>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      // checked={dense}
-                      onChange={(event) => handleClick(event.target.checked)}
-                    />
-                  }
-                  label={false}
-                />
-                <ListItemText
-                  primary="note title"
-                  secondary={secondary ? 'Secondary text' : null}
-                />
-              </ListItem>,
-            )}
-          </List>
-          {/* </div> */}
-        </Grid>
-      </Paper>
-      {/* </Grid> */}
+      <List dense={dense}>
+        <Toolbar>
+          {ico}
+          <ListSubheader className={classes.title}>{title}</ListSubheader>
+        </Toolbar>
+        <Paper className={classes.paper} variant="outlined">
+          <form className={classes.newTask} noValidate autoComplete="off">
+            <TextField id="newTask" label="Add to your list" fullWidth />
+          </form>
+          {generate(
+            <ListItem>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    // checked={dense}
+                    onChange={(event) => handleClick(event.target.checked)}
+                  />
+                }
+                label={false}
+              />
+              <ListItemText
+                primary="note title"
+                // secondary={secondary ? 'Secondary text' : null}
+              />
+            </ListItem>,
+          )}
+        </Paper>
+      </List>
     </div>
   );
 }

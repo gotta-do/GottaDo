@@ -6,37 +6,38 @@ import './App.css';
 import LongTasks from './components/LongTasks';
 import ShortTasks from './components/ShortTasks';
 import NotesList from './components/TaskList';
-import { Add, DonutLarge, DonutSmall, ShortText } from '@material-ui/icons';
-import { Container, Icon } from '@material-ui/core';
+import {
+  Add,
+  Copyright,
+  DonutLarge,
+  DonutSmall,
+  ShortText,
+} from '@material-ui/icons';
+import { Box, Container, Icon, Toolbar, Typography } from '@material-ui/core';
 import TaskList from './components/TaskList';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      // flexGrow: 1,
-      backgroundColor: theme.palette.background.paper,
-      // maxWidth: '75%',
-    },
-    wrapper: {
-      maxWidth: '75vh',
+      flexGrow: 1,
       minHeight: '100vh',
+      backgroundColor: theme.palette.background.paper,
+      color: theme.palette.text.secondary,
     },
+
     paper: {
       padding: theme.spacing(1),
       textAlign: 'center',
-      color: theme.palette.text.secondary,
-      margin: theme.spacing(2),
-      // margin: '10px 20px',
     },
     title: {
       margin: theme.spacing(1),
     },
+    footer: {
+      textAlign: 'center',
+      marginTop: theme.spacing(1),
+    },
   }),
 );
-
-// const icn = (): JSX.Element => {
-//   return <Add />;
-// };
 
 export default function App() {
   const classes = useStyles();
@@ -44,26 +45,22 @@ export default function App() {
   return (
     <div className={classes.root}>
       <Header />
-      <Container
-        maxWidth="md"
-        // className={classes.wrapper}
-        // container
-        // spacing={0}
-        // direction="row"
-        // alignItems="center"
-        // justify="center"
-      >
-        <Grid item xs={12} md={12}>
-          <TaskList
-            title="Things to do today or tomorrow"
-            ico={<DonutSmall />}
-          />
-        </Grid>
-        <Grid item xs={12} md={12}>
-          <TaskList title="Things to do longer term" ico={<DonutLarge />} />
+      <Container maxWidth="md">
+        <Grid container spacing={1}>
+          <Grid item xs={12} md={6}>
+            <TaskList title="Today or tomorrow" ico={<DonutSmall />} />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TaskList title="Longer term" ico={<DonutLarge />} />
+          </Grid>
         </Grid>
         <Grid item xs={12} md={12}>
           <TaskList title="Random notes" ico={<Add />} />
+        </Grid>
+
+        <Grid container justify="center">
+          <Copyright fontSize="small" />
+          <Typography>Skotsson, 2020</Typography>
         </Grid>
       </Container>
     </div>

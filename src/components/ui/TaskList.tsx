@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -50,6 +50,11 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+const handleClick = (event: React.FormEvent<HTMLInputElement>) => {
+  console.log("checked")
+}
+
+
 function generate(element: React.ReactElement) {
   return [0, 1, 2].map((value) =>
     React.cloneElement(element, {
@@ -58,27 +63,43 @@ function generate(element: React.ReactElement) {
   );
 }
 
-const handleClick = (event: any) => {
-  return null;
-};
-
 interface TaskListProps {
   title: string;
   ico: JSX.Element;
 }
 
-const handleKeypress = (e: React.KeyboardEvent) => {
-  e.keyCode === 13 ? console.log('clicked') : console.log('not');
-};
+type ToDoType = "short" || "long" || "note";
+
+interface IToDo {
+    label: string,
+    isChecked: boolean,
+    type: ToDoType,
+}
+const todos: IToDo[];
+
 
 export default function TaskList({ title, ico }: TaskListProps) {
   const classes = useStyles();
-  const [dense] = React.useState(true);
+  // const [dense] = React.useState(true);
   // const [secondary] = React.useState(true);
+  const [task, setTask] = useState([]);
+  const [done, setDone] = useState(false);
+
+// const handleNewTask = (event: KeyboardEvent) => {
+//   if (event.keyCode === 13) {
+//     event.stopPropagation();
+// event.preventDefault();
+//     setTask(event.target.value);
+//     console.log('clicked') ;
+//   };
+// };
+
+
+
 
   return (
     <div className={classes.root}>
-      <List dense={dense}>
+      <List dense>
         <Toolbar>
           {ico}
           <ListSubheader className={classes.title}>{title}</ListSubheader>
@@ -88,19 +109,25 @@ export default function TaskList({ title, ico }: TaskListProps) {
             className={classes.newTask}
             noValidate
             autoComplete='off'
-            onKeyPress={(e) => handleKeypress(e)}
           >
             <Grid className={classes.formGrid}>
-              <TextField id='newTask' label='Add to your list' fullWidth />
+              <TextField 
+              id='task' 
+              // multiline
+              label='Add to your list' 
+              value={task} 
+              onChange={event=>setTask(event.target.value)}
+              fullWidth 
+              />
             </Grid>
-          </form>
           {generate(
             <ListItem>
               <FormControlLabel
                 control={
                   <Checkbox
                     // checked={dense}
-                    onChange={(event) => handleClick(event.target.checked)}
+                    value={done}
+                    onChange={(event) => setDone(true)}
                   />
                 }
                 label={false}
@@ -111,6 +138,7 @@ export default function TaskList({ title, ico }: TaskListProps) {
               />
             </ListItem>,
           )}
+          </form>
         </Paper>
       </List>
     </div>

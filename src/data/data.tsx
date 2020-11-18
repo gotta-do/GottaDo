@@ -1,20 +1,9 @@
-export const tasksShort = [
-  {
-    taskTitle: 'title example',
-    task: 'task example',
-  },
-];
+import { IToDo } from '../interfaces/interfaces';
 
-export const tasksLong = [
+export const toDos: IToDo[] = [
   {
-    tastTitle: 'title example',
-    task: 'task example',
-  },
-];
-
-export const notes = [
-  {
-    noteTitle: 'title example',
-    note: 'task example',
+    label: 'Finish app',
+    isChecked: false,
+    type: 'short-term',
   },
 ];

@@ -39,14 +39,22 @@ export default function App() {
       <Container maxWidth='md'>
         <Grid container spacing={1}>
           <Grid item xs={12} md={6}>
-            <TaskList title='Today or tomorrow' ico={<DonutSmall />} />
+            <TaskList
+              title='Today or tomorrow'
+              ico={<DonutSmall />}
+              type='short-term'
+            />
           </Grid>
           <Grid item xs={12} md={6}>
-            <TaskList title='Longer term' ico={<DonutLarge />} />
+            <TaskList
+              title='Longer term'
+              ico={<DonutLarge />}
+              type='long-term'
+            />
           </Grid>
         </Grid>
         <Grid item xs={12} md={12}>
-          <TaskList title='Random notes' ico={<Add />} />
+          <TaskList title='Random notes' ico={<Add />} type='note' />
         </Grid>
         <Grid justify='center'>
           <Footer />

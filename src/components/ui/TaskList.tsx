@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { ChangeEvent, SyntheticEvent, useState } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -13,6 +13,8 @@ import {
   TextField,
   Toolbar,
 } from '@material-ui/core';
+import { TaskListProps, ToDoType } from '../../interfaces/interfaces';
+import { toDos } from '../../data/data';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: theme.spacing(0),
     },
     formGrid: {
-      justifyContent: 'flexStart',
+      // justifyContent: 'flexStart',
     },
     paper: {
       // padding: theme.spacing(1),
@@ -42,18 +44,17 @@ const useStyles = makeStyles((theme: Theme) =>
 
     newTask: {
       '& > *': {
-        margin: theme.spacing(2),
-        // width: '40ch',
-        justifyContent: 'flex-end',
+        // marginRight: theme.spacing(5),
+        // width: '100%',
+        // justifyContent: 'flex-start',
       },
     },
   }),
 );
 
 const handleClick = (event: React.FormEvent<HTMLInputElement>) => {
-  console.log("checked")
-}
-
+  console.log('checked');
+};
 
 function generate(element: React.ReactElement) {
   return [0, 1, 2].map((value) =>
@@ -63,39 +64,35 @@ function generate(element: React.ReactElement) {
   );
 }
 
-interface TaskListProps {
-  title: string;
-  ico: JSX.Element;
-}
+// export type ToDoType = 'short-term' | 'long-term' | 'note';
+// export interface IToDo {
+//   label: string;
+//   isChecked: boolean;
+//   type: ToDoType;
+// }
 
-type ToDoType = "short" || "long" || "note";
+// interface TaskListProps {
+//   title: string;
+//   ico: JSX.Element;
+// }
 
-interface IToDo {
-    label: string,
-    isChecked: boolean,
-    type: ToDoType,
-}
-const todos: IToDo[];
-
-
-export default function TaskList({ title, ico }: TaskListProps) {
+export default function TaskList({ title, ico, type }: TaskListProps) {
   const classes = useStyles();
-  // const [dense] = React.useState(true);
-  // const [secondary] = React.useState(true);
-  const [task, setTask] = useState([]);
+
+  const [taskLabel, setTaskLabel] = useState('');
   const [done, setDone] = useState(false);
 
-// const handleNewTask = (event: KeyboardEvent) => {
-//   if (event.keyCode === 13) {
-//     event.stopPropagation();
-// event.preventDefault();
-//     setTask(event.target.value);
-//     console.log('clicked') ;
-//   };
-// };
-
-
-
+  const handleNewTask = (event: ChangeEvent<HTMLInputElement>) => {
+    event.stopPropagation();
+    // event.preventDefault();
+    toDos.push({
+      label: (event.target as HTMLInputElement).value,
+      isChecked: false,
+      type: type,
+    });
+    setTaskLabel((event.target as HTMLInputElement).value);
+    console.log('clicked');
+  };
 
   return (
     <div className={classes.root}>
@@ -105,39 +102,36 @@ export default function TaskList({ title, ico }: TaskListProps) {
           <ListSubheader className={classes.title}>{title}</ListSubheader>
         </Toolbar>
         <Paper className={classes.paper} variant='outlined'>
-          <form
-            className={classes.newTask}
-            noValidate
-            autoComplete='off'
-          >
-            <Grid className={classes.formGrid}>
-              <TextField 
-              id='task' 
-              // multiline
-              label='Add to your list' 
-              value={task} 
-              onChange={event=>setTask(event.target.value)}
-              fullWidth 
+          <form className={classes.newTask} noValidate autoComplete='off'>
+            <Grid item container className={classes.formGrid}>
+              <TextField
+                id='task'
+                className={classes.newTask}
+                label='Add to your list'
+                value={taskLabel}
+                onChange={handleNewTask}
+                variant='filled'
+                fullWidth
               />
             </Grid>
-          {generate(
-            <ListItem>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    // checked={dense}
-                    value={done}
-                    onChange={(event) => setDone(true)}
-                  />
-                }
-                label={false}
-              />
-              <ListItemText
-                primary='note title'
-                // secondary={secondary ? 'Secondary text' : null}
-              />
-            </ListItem>,
-          )}
+            {generate(
+              <ListItem>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      // checked={dense}
+                      value={done}
+                      onChange={(event) => setDone(true)}
+                    />
+                  }
+                  label={false}
+                />
+                <ListItemText
+                  primary='note title'
+                  // secondary={secondary ? 'Secondary text' : null}
+                />
+              </ListItem>,
+            )}
           </form>
         </Paper>
       </List>

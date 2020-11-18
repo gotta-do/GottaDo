@@ -1,16 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'fontsource-roboto';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core';
-
-const theme = createMuiTheme({
-  palette: {
-    type: 'dark',
-  },
-});
+import theme from './components/ui/theme';
+import { ThemeProvider } from '@material-ui/core';
+import App from './components/App';
+import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>

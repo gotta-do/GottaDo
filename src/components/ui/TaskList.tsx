@@ -4,18 +4,15 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import {
   Checkbox,
   FormControl,
   FormControlLabel,
-  Input,
   ListSubheader,
   Paper,
   TextField,
   Toolbar,
 } from '@material-ui/core';
-import { Add } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -28,6 +25,9 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       margin: theme.spacing(0),
     },
+    formGrid: {
+      justifyContent: 'flexStart',
+    },
     paper: {
       // padding: theme.spacing(1),
       margin: theme.spacing(1),
@@ -36,14 +36,15 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: theme.palette.background.paper,
       width: '100%',
       overflowY: 'auto',
-      minHeight: theme.spacing(2) * 20,
-      maxHeight: theme.spacing(2) * 20,
+      minHeight: theme.spacing(2) * 19.5,
+      maxHeight: theme.spacing(2) * 19.5,
     },
 
     newTask: {
       '& > *': {
         margin: theme.spacing(2),
-        width: '40ch',
+        // width: '40ch',
+        justifyContent: 'flex-end',
       },
     },
   }),
@@ -66,6 +67,10 @@ interface TaskListProps {
   ico: JSX.Element;
 }
 
+const handleKeypress = (e: React.KeyboardEvent) => {
+  e.keyCode === 13 ? console.log('clicked') : console.log('not');
+};
+
 export default function TaskList({ title, ico }: TaskListProps) {
   const classes = useStyles();
   const [dense] = React.useState(true);
@@ -78,9 +83,16 @@ export default function TaskList({ title, ico }: TaskListProps) {
           {ico}
           <ListSubheader className={classes.title}>{title}</ListSubheader>
         </Toolbar>
-        <Paper className={classes.paper} variant="outlined">
-          <form className={classes.newTask} noValidate autoComplete="off">
-            <TextField id="newTask" label="Add to your list" fullWidth />
+        <Paper className={classes.paper} variant='outlined'>
+          <form
+            className={classes.newTask}
+            noValidate
+            autoComplete='off'
+            onKeyPress={(e) => handleKeypress(e)}
+          >
+            <Grid className={classes.formGrid}>
+              <TextField id='newTask' label='Add to your list' fullWidth />
+            </Grid>
           </form>
           {generate(
             <ListItem>
@@ -94,7 +106,7 @@ export default function TaskList({ title, ico }: TaskListProps) {
                 label={false}
               />
               <ListItemText
-                primary="note title"
+                primary='note title'
                 // secondary={secondary ? 'Secondary text' : null}
               />
             </ListItem>,

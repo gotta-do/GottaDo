@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { ListSubheader, Paper, TextField, Toolbar } from '@material-ui/core';
-import { ToDoListFrameProps } from '../../interfaces/interfaces';
-import ToDoList from './ToDoList';
+import { TodoListFrameProps } from '../../types/types';
+import TodoList from './TodoList';
+import { deleteTodoActionCreator } from '../../redux-toolkit/redux-toolkit';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { v1 as uuid } from 'uuid';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -34,13 +38,32 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function TaskList({
+export default function TodoListFrame({
   title,
   ico,
   type,
-  toDos,
-}: ToDoListFrameProps) {
+  todos,
+}: TodoListFrameProps) {
+  const dispatch = useDispatch();
+
+  const [newTodo, setNewTodo] = useState('default');
+
   const classes = useStyles();
+
+  const handleAddTodo = (
+    event: React.KeyboardEvent<HTMLInputElement>,
+  ): void => {
+    event.preventDefault();
+    const value = (event.target as HTMLInputElement).value;
+    dispatch(
+      deleteTodoActionCreator({
+        id: uuid(),
+        isDone: false,
+        task: newTodo,
+        type: type,
+      }),
+    );
+  };
 
   return (
     <div className={classes.root}>
@@ -53,11 +76,13 @@ export default function TaskList({
         <Grid container className={classes.formGrid}>
           <TextField
             label='Add to your list'
-            // onKeyDown={handleNewTask}
+            // value={newTodo}
+            onChange={(event) => setNewTodo(event.target.value)}
+            onKeyDownCapture={handleAddTodo}
             variant='filled'
             fullWidth
           />
-          <ToDoList type={type} toDos={toDos} />
+          <TodoList type={type} todos={todos} />
         </Grid>
       </Paper>
       {/* </List> */}

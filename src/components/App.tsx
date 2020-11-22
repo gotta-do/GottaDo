@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Header from './ui/Header';
-import { Add, DonutLarge, DonutSmall } from '@material-ui/icons';
+import { DonutLarge, DonutSmall, ShortText } from '@material-ui/icons';
 import { Container } from '@material-ui/core';
 import Footer from './ui/Footer';
-import TaskList from './ui/TaskList';
+import ToDoListFrame from './ui/ToDoListFrame';
+import { toDoArray } from '../data/data';
+import { IToDo } from '../interfaces/interfaces';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -32,6 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function App() {
   const classes = useStyles();
+  const [toDos, setToDos] = useState(toDoArray);
 
   return (
     <div className={classes.root}>
@@ -39,24 +42,31 @@ export default function App() {
       <Container maxWidth='md'>
         <Grid container spacing={1}>
           <Grid item xs={12} md={6}>
-            <TaskList
+            <ToDoListFrame
               title='Today or tomorrow'
               ico={<DonutSmall />}
               type='short-term'
+              toDos={toDos}
             />
           </Grid>
           <Grid item xs={12} md={6}>
-            <TaskList
+            <ToDoListFrame
               title='Longer term'
               ico={<DonutLarge />}
               type='long-term'
+              toDos={toDos}
             />
           </Grid>
         </Grid>
         <Grid item xs={12} md={12}>
-          <TaskList title='Random notes' ico={<Add />} type='note' />
+          <ToDoListFrame
+            title='Random notes'
+            ico={<ShortText />}
+            type='note'
+            toDos={toDos}
+          />
         </Grid>
-        <Grid justify='center'>
+        <Grid container justify='center'>
           <Footer />
         </Grid>
       </Container>

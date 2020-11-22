@@ -1,13 +1,20 @@
 export type ToDoType = 'short-term' | 'long-term' | 'note';
 
 export interface IToDo {
-  label: string;
+  id: number
+  task: string;
   isChecked: boolean;
   type: ToDoType;
 }
 
-export interface TaskListProps {
+export interface ToDoListFrameProps {
   title: string;
   ico: JSX.Element;
-  type: ToDoType
+  type: ToDoType;
+  toDos: IToDo[];
+}
+
+export interface ToDoListProps {
+  type: ToDoType;
+  toDos: IToDo[];
 }

@@ -7,40 +7,40 @@ import { combineReducers } from '@reduxjs/toolkit';
 export const todosInitialState: ITodo[] = [
   {
     id: uuid(),
-    task: 'Finish app Finish app Finish app',
+    task: 'You have no tasks: delete me',
     isDone: true,
     type: 'short-term',
   },
-  {
-    id: uuid(),
-    task: 'Set up redux',
-    isDone: false,
-    type: 'short-term',
-  },
-  {
-    id: uuid(),
-    task: 'Find new job',
-    isDone: true,
-    type: 'long-term',
-  },
-  {
-    id: uuid(),
-    task: 'Get fit',
-    isDone: false,
-    type: 'long-term',
-  },
-  {
-    id: uuid(),
-    task: 'Today I learned redux.',
-    isDone: false,
-    type: 'note',
-  },
-  {
-    id: uuid(),
-    task: 'Would like to learn .....',
-    isDone: false,
-    type: 'note',
-  },
+  // {
+  //   id: uuid(),
+  //   task: 'Set up redux',
+  //   isDone: false,
+  //   type: 'short-term',
+  // },
+  // {
+  //   id: uuid(),
+  //   task: 'Find new job',
+  //   isDone: true,
+  //   type: 'long-term',
+  // },
+  // {
+  //   id: uuid(),
+  //   task: 'Get fit',
+  //   isDone: false,
+  //   type: 'long-term',
+  // },
+  // {
+  //   id: uuid(),
+  //   task: 'Today I learned redux.',
+  //   isDone: false,
+  //   type: 'note',
+  // },
+  // {
+  //   id: uuid(),
+  //   task: 'Would like to learn .....',
+  //   isDone: false,
+  //   type: 'note',
+  // },
 ];
 
 const todosSlice = createSlice({
@@ -107,9 +107,19 @@ const todosSlice = createSlice({
           isDone: boolean;
         }>,
       ) => {
-        state.push(payload);
+        state.unshift(payload);
       },
-      prepare: ({ task, type }: { task: string; type: TodoType }) => ({
+      prepare: ({
+        task,
+        type,
+        id,
+        isDone,
+      }: {
+        task: string;
+        type: TodoType;
+        id: string;
+        isDone: boolean;
+      }) => ({
         payload: {
           id: uuid(),
           task,

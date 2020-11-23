@@ -4,9 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import { ListSubheader, Paper, TextField, Toolbar } from '@material-ui/core';
 import { TodoListFrameProps } from '../../types/types';
 import TodoList from './TodoList';
-import { deleteTodoActionCreator } from '../../redux-toolkit/redux-toolkit';
+import { createTodoActionCreator } from '../../redux-toolkit/redux-toolkit';
 import { useSelector, useDispatch } from 'react-redux';
-
 import { v1 as uuid } from 'uuid';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -46,23 +45,27 @@ export default function TodoListFrame({
 }: TodoListFrameProps) {
   const dispatch = useDispatch();
 
-  const [newTodo, setNewTodo] = useState('default');
+  const [newTodo, setNewTodo] = useState('');
 
   const classes = useStyles();
 
   const handleAddTodo = (
     event: React.KeyboardEvent<HTMLInputElement>,
   ): void => {
-    event.preventDefault();
-    const value = (event.target as HTMLInputElement).value;
-    dispatch(
-      deleteTodoActionCreator({
-        id: uuid(),
-        isDone: false,
-        task: newTodo,
-        type: type,
-      }),
-    );
+    if (event.keyCode === 13) {
+      // event.preventDefault();
+      const value = (event.target as HTMLInputElement).value;
+      dispatch(
+        createTodoActionCreator({
+          id: uuid(),
+          isDone: false,
+          // task: newTodo,
+          task: value,
+          type: type,
+        }),
+      );
+      setNewTodo('');
+    }
   };
 
   return (
@@ -76,9 +79,9 @@ export default function TodoListFrame({
         <Grid container className={classes.formGrid}>
           <TextField
             label='Add to your list'
-            // value={newTodo}
+            value={newTodo}
             onChange={(event) => setNewTodo(event.target.value)}
-            onKeyDownCapture={handleAddTodo}
+            onKeyDown={handleAddTodo}
             variant='filled'
             fullWidth
           />

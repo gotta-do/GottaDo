@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Button, Toolbar, Typography } from '@material-ui/core';
 import logo from '../assets/white-Logo.png';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -38,7 +38,7 @@ export default function AppTitle() {
           <Typography variant='h6' className={classes.title}>
             A place to stay organized
           </Typography>
-          {/* <Button color="inherit">Login</Button> */}
+          <Button color='inherit'>Login</Button>
         </Toolbar>
       </AppBar>
     </div>

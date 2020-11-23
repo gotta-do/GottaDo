@@ -1,12 +1,10 @@
 import { createMuiTheme } from '@material-ui/core';
 
-/** currently unused colors
-const gMango = "#F08A4B";
-const gOrange="#F2A541";
-const gMaize ="#F3CA40";
-*/
+const gMango = '#F08A4B';
+// const gMaize = '#F3CA40';
 const gRed = '#D78A76';
 const gBlue = '#577590';
+// const gOrange = '#F2A541';
 
 export default createMuiTheme({
   palette: {
@@ -16,10 +14,10 @@ export default createMuiTheme({
       blue: `${gBlue}`,
     },
     primary: {
-      main: `${gBlue}`,
+      main: `${gMango}`,
     },
     secondary: {
-      main: `${gRed}`,
+      main: `${gBlue}`,
     },
   },
   typography: {},

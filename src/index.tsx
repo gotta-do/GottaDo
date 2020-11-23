@@ -2,15 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import 'fontsource-roboto';
-import theme from './components/ui/theme';
+import theme from './components/theme';
 import { ThemeProvider } from '@material-ui/core';
 import App from './components/App';
 import './index.css';
+import { Provider } from 'react-redux';
+import store from './redux-toolkit/redux-toolkit';
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root'),

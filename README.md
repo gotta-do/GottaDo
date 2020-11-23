@@ -1,47 +1,40 @@
-# Getting Started with Create React App
+# Information about the GottaDo project and future plans
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of contents
 
-## Available Scripts
+- [Information about the GottaDo project and future plans](#information-about-the-gottado-project-and-future-plans)
+  - [Table of contents](#table-of-contents)
+  - [General info](#general-info)
+  - [Further development](#further-development)
+  - [Technologies](#technologies)
+  - [Setup](#setup)
 
-In the project directory, you can run:
+## General info
 
-### `yarn start`
+I found that all the note taking apps that I tried were either too complicated, too big, or didn't address my needs. So I decided to build my own. I needed a place to keep short-term todos, long-term todos, and random notes. I wanted them to be in a single view and to be displayed separately and also to have separate inputs.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Further development
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. I would like to do more to the UI to make it look more interesting
+2. I think that if I could make it drag-n-drop'able from short-term to long-term and visa versa, that would be useful
+3. A date-picker on the long-term tasks is also something I'm considering, though I haven't decided if that would be necessary or not
 
-### `yarn test`
+## Technologies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Project is created with:
 
-### `yarn build`
+- React
+- Typescript
+- Material UI
+- Redux-Toolkit
+- Firebase
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Setup
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To run this project, install it locally using yarn:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-"# GottaDo" 
+``` javascript
+cd ../gotta-do
+$ yarn
+$ yarn start
+```

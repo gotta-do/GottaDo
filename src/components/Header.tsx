@@ -35,9 +35,7 @@ export default function AppTitle() {
       <AppBar className={classes.header} position='static' color='secondary'>
         <Toolbar>
           <img src={logo} alt='logo' className={classes.logo} />
-          <Typography variant='h6' className={classes.title}>
-            A place to stay organized
-          </Typography>
+          <Typography variant='h6' className={classes.title}></Typography>
           <Button color='inherit'>Login</Button>
         </Toolbar>
       </AppBar>

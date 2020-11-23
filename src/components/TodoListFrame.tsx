@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import { ListSubheader, Paper, TextField, Toolbar } from '@material-ui/core';
-import { TodoListFrameProps } from '../../types/types';
-import TodoList from './TodoList';
-import { createTodoActionCreator } from '../../redux-toolkit/redux-toolkit';
-import { useSelector, useDispatch } from 'react-redux';
+import {
+  List,
+  ListSubheader,
+  Paper,
+  TextField,
+  Toolbar,
+} from '@material-ui/core';
+import { TodoListFrameProps } from '../types/types';
+// import TodoList from './TodoList';
+import { createTodoActionCreator } from '../redux-toolkit/redux-toolkit';
+import { useDispatch } from 'react-redux';
 import { v1 as uuid } from 'uuid';
+import TodoList from './TodoList';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -20,7 +27,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     formGrid: {},
     paper: {
-      // padding: theme.spacing(1),
       margin: theme.spacing(1),
       textAlign: 'center',
       color: theme.palette.text.secondary,
@@ -59,7 +65,6 @@ export default function TodoListFrame({
         createTodoActionCreator({
           id: uuid(),
           isDone: false,
-          // task: newTodo,
           task: value,
           type: type,
         }),
@@ -69,8 +74,7 @@ export default function TodoListFrame({
   };
 
   return (
-    <div className={classes.root}>
-      {/* <List dense> */}
+    <List dense>
       <Toolbar>
         {ico}
         <ListSubheader className={classes.title}>{title}</ListSubheader>
@@ -88,7 +92,6 @@ export default function TodoListFrame({
           <TodoList type={type} todos={todos} />
         </Grid>
       </Paper>
-      {/* </List> */}
-    </div>
+    </List>
   );
 }

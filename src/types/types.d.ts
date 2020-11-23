@@ -1,6 +1,6 @@
 export type TodoType = 'short-term' | 'long-term' | 'note';
 
-export interface ITodo {
+export interface Todo {
   id: string;
   task: string;
   isDone: boolean;
@@ -11,15 +11,15 @@ export interface TodoListFrameProps {
   title: string;
   ico: JSX.Element;
   type: TodoType;
-  todos: ITodo[];
+  todos: Todo[];
 }
 
 export interface TodoListProps {
   type: TodoType;
-  todos: ITodo[];
+  todos: Todo[];
 }
 
-export interface IState {
-    todos: ITodo[];
+export interface State {
+    todos: Todo[];
     selectedTodo: string | null;
   }

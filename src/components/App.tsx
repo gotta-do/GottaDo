@@ -1,22 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Header from './ui/Header';
+import Header from './Header';
 import { DonutLarge, DonutSmall, ShortText } from '@material-ui/icons';
 import { Container } from '@material-ui/core';
-import Footer from './ui/Footer';
-import TodoListFrame from './ui/TodoListFrame';
-// import { todoArray } from '../data/data';
-import { ITodo, IState } from '../types/types';
-
-import {
-  createTodoActionCreator,
-  editTodoActionCreator,
-  toggleCheckedActionCreator,
-  deleteTodoActionCreator,
-  selectedTodoActionCreator,
-} from '../redux-toolkit/redux-toolkit';
-import { useSelector, useDispatch } from 'react-redux';
+import Footer from './Footer';
+import { State } from '../types/types';
+import { useSelector } from 'react-redux';
+import TodoListFrame from './TodoListFrame';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,10 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function App() {
-  const dispatch = useDispatch();
-  const todos = useSelector((state: IState) => state.todos);
-
-  // const selectedTodoID = useSelector((state: IState) => state.selectedTodo);
+  const todos = useSelector((state: State) => state.todos);
   const classes = useStyles();
 
   return (

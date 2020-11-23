@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import 'fontsource-roboto';
-import theme from './components/ui/theme';
+import theme from './components/theme';
 import { ThemeProvider } from '@material-ui/core';
 import App from './components/App';
 import './index.css';

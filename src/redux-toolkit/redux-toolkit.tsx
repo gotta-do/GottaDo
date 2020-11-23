@@ -1,10 +1,10 @@
 import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { ITodo, TodoType } from '../types/types';
+import { Todo, TodoType } from '../types/types';
 import { v1 as uuid } from 'uuid';
 import { combineReducers } from '@reduxjs/toolkit';
 
-export const todosInitialState: ITodo[] = [
+export const todosInitialState: Todo[] = [
   {
     id: uuid(),
     task: 'You have no tasks: delete me',
@@ -131,13 +131,13 @@ const todosSlice = createSlice({
   },
 });
 
-const selectedTodoSlice = createSlice({
-  name: 'selectedTodo',
-  initialState: null as string | null,
-  reducers: {
-    select: (state, { payload }: PayloadAction<{ id: string }>) => payload.id,
-  },
-});
+// const selectedTodoSlice = createSlice({
+//   name: 'selectedTodo',
+//   initialState: null as string | null,
+//   reducers: {
+//     select: (state, { payload }: PayloadAction<{ id: string }>) => payload.id,
+//   },
+// });
 
 export const {
   create: createTodoActionCreator,
@@ -146,11 +146,11 @@ export const {
   remove: deleteTodoActionCreator,
 } = todosSlice.actions;
 
-export const { select: selectedTodoActionCreator } = selectedTodoSlice.actions;
+// export const { select: selectedTodoActionCreator } = selectedTodoSlice.actions;
 
 const reducer = combineReducers({
   todos: todosSlice.reducer,
-  selected: selectedTodoSlice.reducer,
+  // selected: selectedTodoSlice.reducer,
 });
 
 export default configureStore({

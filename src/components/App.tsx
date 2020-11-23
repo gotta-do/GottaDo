@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Header from './ui/Header';
-import { Add, DonutLarge, DonutSmall } from '@material-ui/icons';
+import { DonutLarge, DonutSmall, ShortText } from '@material-ui/icons';
 import { Container } from '@material-ui/core';
 import Footer from './ui/Footer';
-import TaskList from './ui/TaskList';
+import TodoListFrame from './ui/TodoListFrame';
+// import { todoArray } from '../data/data';
+import { ITodo, IState } from '../types/types';
+
+import {
+  createTodoActionCreator,
+  editTodoActionCreator,
+  toggleCheckedActionCreator,
+  deleteTodoActionCreator,
+  selectedTodoActionCreator,
+} from '../redux-toolkit/redux-toolkit';
+import { useSelector, useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -31,6 +42,10 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function App() {
+  const dispatch = useDispatch();
+  const todos = useSelector((state: IState) => state.todos);
+
+  // const selectedTodoID = useSelector((state: IState) => state.selectedTodo);
   const classes = useStyles();
 
   return (
@@ -39,24 +54,31 @@ export default function App() {
       <Container maxWidth='md'>
         <Grid container spacing={1}>
           <Grid item xs={12} md={6}>
-            <TaskList
+            <TodoListFrame
               title='Today or tomorrow'
               ico={<DonutSmall />}
               type='short-term'
+              todos={todos}
             />
           </Grid>
           <Grid item xs={12} md={6}>
-            <TaskList
+            <TodoListFrame
               title='Longer term'
               ico={<DonutLarge />}
               type='long-term'
+              todos={todos}
             />
           </Grid>
         </Grid>
         <Grid item xs={12} md={12}>
-          <TaskList title='Random notes' ico={<Add />} type='note' />
+          <TodoListFrame
+            title='Random notes'
+            ico={<ShortText />}
+            type='note'
+            todos={todos}
+          />
         </Grid>
-        <Grid justify='center'>
+        <Grid container justify='center'>
           <Footer />
         </Grid>
       </Container>

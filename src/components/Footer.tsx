@@ -15,7 +15,7 @@ export default function Footer() {
   return (
     <Grid container justify='center'>
       <Typography className={classes.footer} variant='caption'>
-        Developed by Skotsson.
+        Developed by iskoti.
       </Typography>
     </Grid>
   );

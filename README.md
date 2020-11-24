@@ -36,6 +36,6 @@ To run this project, install it locally using yarn:
 
 ``` javascript
 cd ../gotta-do
-$ yarn
+$ yarn install
 $ yarn start
 ```

@@ -12,7 +12,7 @@ export default function App() {
     <div>
       <ThemeProvider theme={theme}>
         <Provider store={store}>
-          <Router basename='/React'>
+          <Router>
             <Switch>
               <Route exact path='/' component={Homepage} />
               <Route exact path='/login' component={Loginpage} />

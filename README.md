@@ -32,10 +32,9 @@ Project is created with:
 
 ## Setup
 
-To run this project, install it locally using yarn:
+To run this project, o to the root directly, open up the terminal, and type
 
-``` javascript
-cd ../gotta-do
-$ yarn install
+```
+$ yarn
 $ yarn start
 ```

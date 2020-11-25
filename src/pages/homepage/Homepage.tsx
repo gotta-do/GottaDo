@@ -1,13 +1,17 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Header from './Header';
+// import Header from './Header';
 import { DonutLarge, DonutSmall, ShortText } from '@material-ui/icons';
 import { Container } from '@material-ui/core';
-import Footer from './Footer';
-import { State } from '../types/types';
+// import Footer from '../components/Footer';
+// import { State } from '../types/types';
 import { useSelector } from 'react-redux';
-import TodoListFrame from './TodoListFrame';
+import { State } from '../../types/types';
+import Header from '../../components/Header';
+import TodoListFrame from '../../components/TodoListFrame';
+import Footer from '../../components/Footer';
+// import TodoListFrame from '../TodoListFrame';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -40,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function App() {
+export default function Homepage() {
   const todos = useSelector((state: State) => state.todos);
   const classes = useStyles();
 

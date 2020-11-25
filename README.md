@@ -32,7 +32,8 @@ Project is created with:
 
 ## Setup
 
-To run this project, o to the root directly, open up the terminal, and type
+To run this project, go to the root directly, open up the terminal, and type
+
 
 ```
 $ yarn

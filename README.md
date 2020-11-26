@@ -15,10 +15,11 @@ I found that all the note taking apps that I tried were either too complicated, 
 
 ## Further development
 
-1. I would like to do more to the UI to make it look more interesting
-2. I think that if I could make it drag-n-drop'able from short-term to long-term and visa versa, that would be useful
-3. A date-picker on the long-term tasks is also something I'm considering, though I haven't decided if that would be necessary or not
-4. User authentication and storage of user tasks/notes is something I'm currently working on
+1. THIS PROJECT IS A WORK IN PROGRESS
+2. I would like to do more to the UI to make it look more interesting
+3. I think that if I could make it drag-n-drop'able from short-term to long-term and visa versa, that would be useful
+4. A date-picker on the long-term tasks is also something I'm considering, though I haven't decided if that would be necessary or not
+5. User authentication and storage of user tasks/notes is something I'm currently working on
 
 ## Technologies
 
@@ -27,8 +28,7 @@ Project is created with:
 - React
 - Typescript
 - Material UI
-- Redux-Toolkit
-- Firebase
+- Redux
 
 ## Setup
 

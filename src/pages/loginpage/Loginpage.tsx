@@ -37,6 +37,10 @@ const useStyles = makeStyles((theme: Theme) =>
     //   top: '100px',
     //   left: '330px',
     // },
+    wrapper: {
+      display: 'flex',
+      flexDirection: 'column',
+    },
   }),
 );
 
@@ -48,14 +52,22 @@ export default function Loginpage() {
       {/* <div className={classes.hover}></div> */}
       <Header />
       <Container maxWidth='md'>
-        <div>Login page coming.</div>
-        <Grid container spacing={1}>
-          <TextField></TextField>
-          <TextField></TextField>
-        </Grid>
-        <Grid container justify='center'>
-          <Footer />
-        </Grid>
+        <div className={classes.wrapper}>
+          <div>
+            <Grid container spacing={1}>
+              <div>
+                <TextField></TextField>
+              </div>
+              <div>
+                <TextField></TextField>
+              </div>
+            </Grid>
+          </div>
+          <div></div>
+          <Grid container justify='center'>
+            <Footer />
+          </Grid>
+        </div>
       </Container>
     </div>
   );

@@ -40,6 +40,9 @@ const useStyles = makeStyles((theme: Theme) =>
     checkedTask: {
       textDecoration: 'line-through',
     },
+    list: {
+      marginRight: '27px',
+    },
   }),
 );
 
@@ -74,7 +77,7 @@ export default function TodoListFrame({
   };
 
   return (
-    <List dense>
+    <List className={classes.list} dense>
       <Toolbar>
         {ico}
         <ListSubheader className={classes.title}>{title}</ListSubheader>

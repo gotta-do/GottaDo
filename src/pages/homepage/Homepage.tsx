@@ -52,7 +52,7 @@ export default function Homepage() {
     <div className={classes.root}>
       {/* <div className={classes.hover}></div> */}
       <Header />
-      <Container maxWidth='md'>
+      <Container disableGutters maxWidth='md'>
         <Grid container spacing={1}>
           <Grid item xs={12} md={6}>
             <TodoListFrame

@@ -39,6 +39,9 @@ export default function AppTitle() {
             <img src={logo} alt='logo' className={classes.logo} />
           </Link>
           <Typography variant='h6' className={classes.title}></Typography>
+          {/* <Link to='/login'>
+            <Button>Login</Button>
+          </Link> */}
         </Toolbar>
       </AppBar>
     </div>

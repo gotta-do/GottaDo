@@ -4,14 +4,31 @@ import reportWebVitals from './reportWebVitals';
 import 'fontsource-roboto';
 import App from './App';
 import './index.css';
+import { createStore, compose } from 'redux';
+import { Provider } from 'react-redux';
+import { reducer } from './redux/reducers';
+// import { composeWithDevTools } from 'redux-devtools'
+// import { State } from './types/types';
+
+// const retreivedLocalStorage = localStorage.getItem('reduxState');
+
+// const persistedState = retreivedLocalStorage
+//   ? JSON.parse(retreivedLocalStorage)
+//   : {};
+
+const composeEnhancers =
+  typeof window === 'object' &&
+  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+    : compose;
+
+const store = createStore(reducer, composeEnhancers());
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <ThemeProvider theme={theme}>
-      <Provider store={store}> */}
-    <App />
-    {/* </Provider>
-    </ThemeProvider> */}
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

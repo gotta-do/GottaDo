@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function Homepage() {
-  const todos = useSelector((state: State) => state.todos);
+  // const todos = useSelector((state: State) => state.todos);
   const classes = useStyles();
 
   return (
@@ -59,7 +59,7 @@ export default function Homepage() {
               title='Today or tomorrow'
               ico={<DonutSmall />}
               type='short-term'
-              todos={todos}
+              // todos={todos}
             />
           </Grid>
           <Grid item xs={12} md={6}>
@@ -67,7 +67,7 @@ export default function Homepage() {
               title='Longer term'
               ico={<DonutLarge />}
               type='long-term'
-              todos={todos}
+              // todos={todos}
             />
           </Grid>
         </Grid>
@@ -76,7 +76,7 @@ export default function Homepage() {
             title='Random notes'
             ico={<ShortText />}
             type='note'
-            todos={todos}
+            // todos={todos}
           />
         </Grid>
         <Grid container justify='center'>

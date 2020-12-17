@@ -10,9 +10,9 @@ import {
 } from '@material-ui/core';
 import { TodoListFrameProps } from '../types/types';
 // import TodoList from './TodoList';
-import { createTodoActionCreator } from '../redux-toolkit/redux-toolkit';
+import { createTodoActionCreator } from '../redux/actions';
 import { useDispatch } from 'react-redux';
-import { v1 as uuid } from 'uuid';
+// import { v1 as uuid } from 'uuid';
 import TodoList from './TodoList';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -46,12 +46,8 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function TodoListFrame({
-  title,
-  ico,
-  type,
-  todos,
-}: TodoListFrameProps) {
+const TodoListFrame: React.FC<TodoListFrameProps> = ({ title, ico, type }) => {
+  // const TodoListFrame = ({ title, ico, termType}: TodoListFrameProps) => {
   const dispatch = useDispatch();
 
   const [newTodo, setNewTodo] = useState('');
@@ -64,10 +60,9 @@ export default function TodoListFrame({
     if (event.keyCode === 13) {
       // event.preventDefault();
       const value = (event.target as HTMLInputElement).value;
+      if (!value.length) return;
       dispatch(
         createTodoActionCreator({
-          id: uuid(),
-          isDone: false,
           task: value,
           type: type,
         }),
@@ -92,9 +87,24 @@ export default function TodoListFrame({
             variant='filled'
             fullWidth
           />
-          <TodoList type={type} todos={todos} />
+          <TodoList type={type} />
         </Grid>
       </Paper>
     </List>
   );
-}
+};
+
+// const mapStateToProps = (state: State) => {
+//   return {
+//     todos: state.todos,
+//   };
+// };
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     createTodoActionCreator: () => dispatch({ type: 'CREATE }),
+//   };
+// };
+
+export default TodoListFrame;
+// export default connect(mapStateToProps, mapDispatchToProps)(TodoListFrame);

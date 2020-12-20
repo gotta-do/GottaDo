@@ -1,17 +1,11 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-// import Header from './Header';
 import { DonutLarge, DonutSmall, ShortText } from '@material-ui/icons';
 import { Container } from '@material-ui/core';
-// import Footer from '../components/Footer';
-// import { State } from '../types/types';
-import { useSelector } from 'react-redux';
-import { State } from '../../types/types';
 import Header from '../../components/Header';
 import TodoListFrame from '../../components/TodoListFrame';
 import Footer from '../../components/Footer';
-// import TodoListFrame from '../TodoListFrame';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,24 +27,14 @@ const useStyles = makeStyles((theme: Theme) =>
       textAlign: 'center',
       marginTop: theme.spacing(1),
     },
-    // hover: {
-    //   height: '100px',
-    //   width: '100px',
-    //   background: 'red',
-    //   position: 'absolute',
-    //   top: '100px',
-    //   left: '330px',
-    // },
   }),
 );
 
 export default function Homepage() {
-  const todos = useSelector((state: State) => state.todos);
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      {/* <div className={classes.hover}></div> */}
       <Header />
       <Container disableGutters maxWidth='md'>
         <Grid container spacing={1}>
@@ -59,7 +43,6 @@ export default function Homepage() {
               title='Today or tomorrow'
               ico={<DonutSmall />}
               type='short-term'
-              todos={todos}
             />
           </Grid>
           <Grid item xs={12} md={6}>
@@ -67,17 +50,11 @@ export default function Homepage() {
               title='Longer term'
               ico={<DonutLarge />}
               type='long-term'
-              todos={todos}
             />
           </Grid>
         </Grid>
         <Grid item xs={12} md={12}>
-          <TodoListFrame
-            title='Random notes'
-            ico={<ShortText />}
-            type='note'
-            todos={todos}
-          />
+          <TodoListFrame title='Random notes' ico={<ShortText />} type='note' />
         </Grid>
         <Grid container justify='center'>
           <Footer />

@@ -1,6 +1,6 @@
 import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { Todo, TodoType } from '../types/types';
+import { Todo, TermType } from '../types/types';
 import { v1 as uuid } from 'uuid';
 import { combineReducers } from '@reduxjs/toolkit';
 
@@ -55,7 +55,7 @@ const todosSlice = createSlice({
         id: string;
         isDone: boolean;
         task: string;
-        type: TodoType;
+        type: TermType;
       }>,
     ) => {
       const todoToEdit = state.find((todo) => todo.id === payload.id);
@@ -71,7 +71,7 @@ const todosSlice = createSlice({
         id: string;
         isDone: boolean;
         task: string;
-        type: TodoType;
+        type: TermType;
       }>,
     ) => {
       const todoToggle = state.find((todo) => todo.id === payload.id);
@@ -87,7 +87,7 @@ const todosSlice = createSlice({
         id: string;
         isDone: Boolean;
         task: string;
-        type: TodoType;
+        type: TermType;
       }>,
     ) => {
       const index = state.findIndex((todo) => todo.id === payload.id);
@@ -103,7 +103,7 @@ const todosSlice = createSlice({
         }: PayloadAction<{
           id: string;
           task: string;
-          type: TodoType;
+          type: TermType;
           isDone: boolean;
         }>,
       ) => {
@@ -116,7 +116,7 @@ const todosSlice = createSlice({
         isDone,
       }: {
         task: string;
-        type: TodoType;
+        type: TermType;
         id: string;
         isDone: boolean;
       }) => ({

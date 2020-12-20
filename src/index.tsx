@@ -6,9 +6,8 @@ import App from './App';
 import './index.css';
 import { createStore, compose } from 'redux';
 import { Provider } from 'react-redux';
-import { reducer } from './redux/reducers';
-// import { composeWithDevTools } from 'redux-devtools'
 import { State } from './types/types';
+import { rootReducer } from './redux/reducers';
 
 function loadFromLocalStorage() {
   try {
@@ -36,8 +35,8 @@ const composeEnhancers =
     ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
     : compose;
 const persistedState = loadFromLocalStorage();
-const store = createStore(reducer, persistedState, composeEnhancers());
-store.subscribe(() => saveToLocalStorage(store.getState()));
+const store = createStore(rootReducer, persistedState, composeEnhancers());
+store.subscribe(() => saveToLocalStorage(store.getState() as State));
 
 ReactDOM.render(
   <React.StrictMode>

@@ -40,8 +40,6 @@ export const todosReducer = (
   return state;
 };
 
-export const reducer = combineReducers({
+export const rootReducer = combineReducers({
   todos: todosReducer,
 });
-
-// const modifiedState = newState.map((todo) =>todo.id === action.payload.id ? action.payload.isDone : todo,

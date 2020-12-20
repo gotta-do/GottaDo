@@ -39,20 +39,13 @@ export interface CreateTodoActionType {
 }
 export interface ToggleTodoActionType {
   type: typeof TOGGLE;
-  payload: { id: string; isDone: boolean };
+  payload: { id: string; 
+  };
 }
 export interface RemoveTodoActionType {
   type: typeof REMOVE;
   payload: { id: string };
 }
-// export interface WriteLocalStorageActionType {
-//   type: typeof WRITE;
-//   payload: State;
-// }
-// export interface LoadLocalStorageActionType {
-//   type: typeof LOAD;
-//   payload: State;
-// }
 
 // reducer todo action types
 

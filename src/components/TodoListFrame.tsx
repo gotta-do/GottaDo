@@ -9,10 +9,8 @@ import {
   Toolbar,
 } from '@material-ui/core';
 import { TodoListFrameProps } from '../types/types';
-// import TodoList from './TodoList';
 import { createTodoActionCreator } from '../redux/actions';
 import { useDispatch } from 'react-redux';
-// import { v1 as uuid } from 'uuid';
 import TodoList from './TodoList';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -49,6 +47,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const TodoListFrame: React.FC<TodoListFrameProps> = ({ title, ico, type }) => {
   // const TodoListFrame = ({ title, ico, termType}: TodoListFrameProps) => {
   const dispatch = useDispatch();
+  // const todos = useSelector((state: types.State) => state.todos);
 
   const [newTodo, setNewTodo] = useState('');
 
@@ -58,7 +57,7 @@ const TodoListFrame: React.FC<TodoListFrameProps> = ({ title, ico, type }) => {
     event: React.KeyboardEvent<HTMLInputElement>,
   ): void => {
     if (event.keyCode === 13) {
-      // event.preventDefault();
+      event.preventDefault();
       const value = (event.target as HTMLInputElement).value;
       if (!value.length) return;
       dispatch(
@@ -94,17 +93,4 @@ const TodoListFrame: React.FC<TodoListFrameProps> = ({ title, ico, type }) => {
   );
 };
 
-// const mapStateToProps = (state: State) => {
-//   return {
-//     todos: state.todos,
-//   };
-// };
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     createTodoActionCreator: () => dispatch({ type: 'CREATE }),
-//   };
-// };
-
 export default TodoListFrame;
-// export default connect(mapStateToProps, mapDispatchToProps)(TodoListFrame);

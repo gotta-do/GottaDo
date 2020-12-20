@@ -8,21 +8,36 @@ import { createStore, compose } from 'redux';
 import { Provider } from 'react-redux';
 import { reducer } from './redux/reducers';
 // import { composeWithDevTools } from 'redux-devtools'
-// import { State } from './types/types';
+import { State } from './types/types';
 
-// const retreivedLocalStorage = localStorage.getItem('reduxState');
+function loadFromLocalStorage() {
+  try {
+    const serializedState = localStorage.getItem('state');
+    if (serializedState === null) return undefined;
+    return JSON.parse(serializedState);
+  } catch (e) {
+    console.log(e);
+    return undefined;
+  }
+}
 
-// const persistedState = retreivedLocalStorage
-//   ? JSON.parse(retreivedLocalStorage)
-//   : {};
+function saveToLocalStorage(state: State) {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem('state', serializedState);
+  } catch (e) {
+    console.log(e);
+  }
+}
 
 const composeEnhancers =
   typeof window === 'object' &&
   (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
     : compose;
-
-const store = createStore(reducer, composeEnhancers());
+const persistedState = loadFromLocalStorage();
+const store = createStore(reducer, persistedState, composeEnhancers());
+store.subscribe(() => saveToLocalStorage(store.getState()));
 
 ReactDOM.render(
   <React.StrictMode>

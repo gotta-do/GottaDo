@@ -23,6 +23,10 @@ const useStyles = makeStyles((theme: Theme) =>
     list: {
       width: '100%',
     },
+    text: {
+      maxWidth: '95%',
+      wordWrap: 'break-word',
+    },
   }),
 );
 
@@ -33,23 +37,13 @@ const TodoList: React.FC<types.TodoListProps> = (props) => {
 
   const classes = useStyles();
 
-  // const handleRemoveTodo = (
-  //   event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  // ): void => {
-  //   event.preventDefault();
-  //   // const todo = (event.target as HTMLInputElement).value;
-  //   console.log('TODO IS: ' + todo);
-  //   dispatch(removeTodoActionCreator({ id: event.target.todo.id }));
-  // };
-
   return (
-    <List dense className={classes.list}>
+    <List dense className={`${classes.list}`}>
       {todos.map((todo, index) =>
         props.type === todo.type ? (
           <ListItem key={todo.id}>
             <Checkbox
               checked={todo.isDone}
-              // onChange={toggleCheckedActionCreator}
               onChange={() =>
                 dispatch(
                   toggleTodoActionCreator({
@@ -59,7 +53,7 @@ const TodoList: React.FC<types.TodoListProps> = (props) => {
                 )
               }
             />
-            <ListItemText primary={todo.task} />
+            <ListItemText className={classes.text} primary={todo.task} />
             <ListItemSecondaryAction>
               <IconButton
                 edge='end'
@@ -70,12 +64,6 @@ const TodoList: React.FC<types.TodoListProps> = (props) => {
               >
                 <DeleteIcon />
               </IconButton>
-              {/* <IconButton
-                  edge='end'
-                  onClick={(event) => handleRemoveTodo(event)}
-                >
-                  <DeleteIcon />
-                </IconButton> */}
             </ListItemSecondaryAction>
           </ListItem>
         ) : null,
@@ -84,19 +72,4 @@ const TodoList: React.FC<types.TodoListProps> = (props) => {
   );
 };
 
-// const mapStateToProps = (state: State) => {
-//   return {
-//     todos: state.todos,
-//   };
-// };
-
-// const mapDispatchToProps = (dispatch: DispatchType) => {
-//   return {
-//     toggleCheckedActionCreator: () =>
-//       dispatch({ type: 'TOGGLE', payload: todo.isDone }),
-//     deleteTodoActionCreator: () => dispatch({ type: 'REMOVE' }),
-//   };
-// };
-
 export default TodoList;
-// export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

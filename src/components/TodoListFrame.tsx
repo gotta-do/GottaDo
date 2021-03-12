@@ -84,6 +84,7 @@ const TodoListFrame: React.FC<TodoListFrameProps> = ({ title, ico, type }) => {
             onChange={(event) => setNewTodo(event.target.value)}
             onKeyDown={handleAddTodo}
             variant='filled'
+            multiline
             fullWidth
           />
           <TodoList type={type} />

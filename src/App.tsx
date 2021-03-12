@@ -12,7 +12,7 @@ export default function App() {
         <Router>
           <Switch>
             <Route exact path='/' component={Homepage} />
-            <Route exact path='/login' component={Loginpage} />
+            {/* <Route exact path='/login' component={Loginpage} /> */}
           </Switch>
         </Router>
       </ThemeProvider>

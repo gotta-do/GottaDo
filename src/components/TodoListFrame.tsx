@@ -31,8 +31,8 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: theme.palette.background.paper,
       width: '100%',
       overflowY: 'auto',
-      minHeight: theme.spacing(2) * 19.5,
-      maxHeight: theme.spacing(2) * 19.5,
+      minHeight: theme.spacing(2) * 18,
+      maxHeight: theme.spacing(2) * 18,
     },
 
     checkedTask: {
@@ -45,9 +45,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const TodoListFrame: React.FC<TodoListFrameProps> = ({ title, ico, type }) => {
-  // const TodoListFrame = ({ title, ico, termType}: TodoListFrameProps) => {
   const dispatch = useDispatch();
-  // const todos = useSelector((state: types.State) => state.todos);
 
   const [newTodo, setNewTodo] = useState('');
 

@@ -17,8 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(2),
     },
     title: {
-      flexGrow: 1,
-      marging: '120px',
+      marginLeft: theme.spacing(2),
     },
     logo: {
       marginTop: '20px',
@@ -38,7 +37,10 @@ export default function AppTitle() {
           <Link to='/'>
             <img src={logo} alt='logo' className={classes.logo} />
           </Link>
-          <Typography variant='h6' className={classes.title}></Typography>
+          <Typography variant='h5' className={classes.title}>
+            "A place to keep your todos, both long-term and short-term, as well
+            as random notes. Will save to localStorage."
+          </Typography>
           {/* <Link to='/login'>
             <Button>Login</Button>
           </Link> */}
